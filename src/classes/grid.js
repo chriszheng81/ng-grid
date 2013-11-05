@@ -117,6 +117,9 @@ var ngGrid = function ($scope, options, sortService, domUtilityService, $filter,
         //Set this to false if you only want one item selected at a time
         multiSelect: true,
 
+        //Set this to true if you want single row click behaves like windows, also add support to ctrl click
+        mimicWindowsSelect: false,
+
         // pagingOptions -
         pagingOptions: {
             // pageSizes: list of available page sizes.

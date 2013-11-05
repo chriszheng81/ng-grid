@@ -6,6 +6,8 @@ var ngSelectionProvider = function (grid, $scope, $parse) {
     self.lastClickedRow = undefined;
     self.ignoreSelectedItemChanges = false; // flag to prevent circular event loops keeping single-select var in sync
     self.pKeyParser = $parse(grid.config.primaryKey);
+    //mimic windows single click behavior (with ctrl key)
+    self.mimicWindowsSelect = grid.config.mimicWindowsSelect;
 
     // function to manage the selection action of a data item (entity)
     self.ChangeSelection = function (rowItem, evt) {
@@ -83,7 +85,14 @@ var ngSelectionProvider = function (grid, $scope, $parse) {
             }
         }
         else if (!evt.keyCode || isUpDownKeyPress && !grid.config.selectWithCheckboxOnly) {
-            self.setSelection(rowItem, !rowItem.selected);
+            if (self.mimicWindowsSelect) {
+                if(!evt.ctrlKey){
+                    self.toggleSelectAll(false,false,false);
+                }
+                self.setSelection(rowItem, true);
+            } else {
+                self.setSelection(rowItem, !rowItem.selected);
+            }
         }
         self.lastClickedRow = rowItem;
         self.lastClickedRowIndex = rowItem.rowIndex;
