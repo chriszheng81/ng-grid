@@ -151,9 +151,15 @@
                 files: ['src/less/**/*.less'],
                 tasks: ['less']
             },
-            src: {
-                files: ['*', 'workbench/*'],
-                tasks: []
+            js: {
+                files: ['src/*.js',
+                'src/filters/*.js',
+                'src/services/*.js',
+                'src/classes/*.js',
+                'src/directives/*.js',
+                'src/i18n/*.js',
+                '<%= ngtemplates.ngGrid.dest %>'],
+                tasks: ['ngtemplates', 'concat', 'clean']
             }
         },
         ngtemplates: {
