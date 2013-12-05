@@ -73,23 +73,23 @@
             // Print a success message.
             grunt.log.writeln('File "' + f.dest + '" created.');
         });
-    });
+});
 
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         templates: [
-            'src/templates/**.html'
+        'src/templates/**.html'
         ],
         srcFiles: [
-            'src/*.js',
-            'src/filters/*.js',
-            'src/services/*.js',
-            'src/classes/*.js',
-            
-            'src/directives/*.js',
-            'src/i18n/*.js',
-            '<%= ngtemplates.ngGrid.dest %>'
+        'src/*.js',
+        'src/filters/*.js',
+        'src/services/*.js',
+        'src/classes/*.js',
+
+        'src/directives/*.js',
+        'src/i18n/*.js',
+        '<%= ngtemplates.ngGrid.dest %>'
         ],
         testFiles: { //unit & e2e goes here
             karmaUnit: 'config/karma.conf.js',
@@ -134,6 +134,9 @@
             }
         },
         watch: {
+            options: {
+                livereload: true
+            },
             // Run unit test with karma
             karma: {
                 files: ['build/ng-grid.debug.js', 'test/unit/**/*.js', 'plugins/*.js'],
@@ -147,6 +150,10 @@
             less: {
                 files: ['src/less/**/*.less'],
                 tasks: ['less']
+            },
+            src: {
+                files: ['*', 'workbench/*'],
+                tasks: []
             }
         },
         ngtemplates: {
@@ -159,52 +166,52 @@
         concat: {
             options: {
                 banner: '/***********************************************\n' +
-                    '* ng-grid JavaScript Library\n' +
-                    '* Authors: https://github.com/angular-ui/ng-grid/blob/master/README.md \n' +
-                    '* License: MIT (http://www.opensource.org/licenses/mit-license.php)\n' +
-                    '* Compiled At: <%= grunt.template.today("mm/dd/yyyy HH:MM") %>\n' +
-                    '***********************************************/\n' +
-                    '(function(window, $) {\n' +
+                '* ng-grid JavaScript Library\n' +
+                '* Authors: https://github.com/angular-ui/ng-grid/blob/master/README.md \n' +
+                '* License: MIT (http://www.opensource.org/licenses/mit-license.php)\n' +
+                '* Compiled At: <%= grunt.template.today("mm/dd/yyyy HH:MM") %>\n' +
+                '***********************************************/\n' +
+                '(function(window, $) {\n' +
                     '\'use strict\';\n',
-                footer: '\n}(window, jQuery));'
-            },
-            prod: {
-                options: {
-                    stripBanners: {
-                        block: true,
-                        line: true
-                    }
-                },
-                src: ['<%= srcFiles %>'],
-                dest: 'build/<%= pkg.name %>.js'
-            },
-            debug: {
-                src: ['<%= srcFiles %>'],
-                dest: 'build/<%= pkg.name %>.debug.js'
-            },
-            version: {
-                src: ['<%= srcFiles %>'],
-                dest: '<%= pkg.name %>-<%= pkg.version %>.debug.js'
-            }
-        },
-        uglify: {
-            build: {
-                src: 'build/<%= pkg.name %>.js',
-                dest: 'build/<%= pkg.name %>.min.js'
-            },
-            version: {
-                src: '<%= pkg.name %>-<%= pkg.version %>.debug.js',
-                dest: '<%= pkg.name %>-<%= pkg.version %>.min.js'
-            }
-        },
-        clean: {
-            templates: {
-                src: ["<%= ngtemplates.ngGrid.dest %>"]
-            }
-        },
-        less: {
-            build: {
-                options: {
+                    footer: '\n}(window, jQuery));'
+},
+prod: {
+    options: {
+        stripBanners: {
+            block: true,
+            line: true
+        }
+    },
+    src: ['<%= srcFiles %>'],
+    dest: 'build/<%= pkg.name %>.js'
+},
+debug: {
+    src: ['<%= srcFiles %>'],
+    dest: 'build/<%= pkg.name %>.debug.js'
+},
+version: {
+    src: ['<%= srcFiles %>'],
+    dest: '<%= pkg.name %>-<%= pkg.version %>.debug.js'
+}
+},
+uglify: {
+    build: {
+        src: 'build/<%= pkg.name %>.js',
+        dest: 'build/<%= pkg.name %>.min.js'
+    },
+    version: {
+        src: '<%= pkg.name %>-<%= pkg.version %>.debug.js',
+        dest: '<%= pkg.name %>-<%= pkg.version %>.min.js'
+    }
+},
+clean: {
+    templates: {
+        src: ["<%= ngtemplates.ngGrid.dest %>"]
+    }
+},
+less: {
+    build: {
+        options: {
                     // yuicompress: true
                 },
                 files: {
@@ -296,6 +303,7 @@
     grunt.loadNpmTasks('grunt-jsdoc');
     grunt.loadNpmTasks('grunt-angular-templates');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-connect');
 
     // Old default task
     grunt.registerTask('build', ['less', 'ngtemplates', 'concat', 'uglify', 'clean']);
@@ -308,4 +316,6 @@
     grunt.registerTask('debug', ['less', 'ngtemplates', 'concat:debug', 'clean']);
     grunt.registerTask('prod', ['less', 'ngtemplates', 'concat:prod', 'uglify', 'clean']);
     grunt.registerTask('version', ['ngtemplates', 'concat:version', 'uglify:version', 'clean']);
+
+    grunt.registerTask('dev', ['less', 'ngtemplates', 'concat', 'uglify', 'clean', 'watch']);
 };
