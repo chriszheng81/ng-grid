@@ -1,5 +1,7 @@
 .ngGrid {
   background-color: #fdfdfd;
+  font-family: Arial;
+  font-size: 13px;
 }
 .ngGrid input[type="checkbox"] {
   margin: 0;
@@ -24,6 +26,8 @@
 }
 .ngCanvas {
   position: relative;
+  border: 1px solid #d5d6d8;
+  border-width: 0 1px 0 1px;
 }
 .ngVerticalBar {
   position: absolute;
@@ -38,8 +42,11 @@
   position: relative;
   overflow: hidden;
   font-weight: bold;
-  background-color: inherit;
+  background-color: #ffffff;
   height: 40px;
+  color: #5c646b;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fcfefe), to(#f2f9fb));
+  border: 1px solid #d5d6d8;
 }
 .ngHeaderCell {
   position: absolute;
@@ -50,6 +57,10 @@
 .ngHeaderCell.pinned {
   z-index: 1;
 }
+.ngHeaderText {
+  margin: 5px;
+  font-size: 13px;
+}
 .ngHeaderSortColumn {
   position: absolute;
   overflow: hidden;
@@ -58,7 +69,6 @@
   position: relative;
   z-index: 1;
   background-color: #eaeaea;
-  border-bottom: 1px solid #d5d6d8;
 }
 .ngSortButtonDown {
   position: absolute;
@@ -319,8 +329,8 @@
   white-space: nowrap;
 }
 .ngRow {
+  color: #5c646b;
   position: absolute;
-  border-bottom: 1px solid #d5d6d8;
 }
 .ngRow.odd {
   background-color: #f8f9f9;
@@ -329,7 +339,8 @@
   background-color: #edf0f1;
 }
 .ngRow.selected {
-  background-color: #c9dde1;
+  background-color: #35a1cf;
+  color: #ffffff;
 }
 .ngCell {
   overflow: hidden;
@@ -337,12 +348,13 @@
   top: 0;
   bottom: 0;
   background-color: inherit;
+  font-size: 12px;
+  border-bottom: 1px solid #d5d6d8;
 }
 .ngCell.pinned {
   z-index: 1;
 }
 .ngCellText {
-  padding: 5px;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -351,6 +363,7 @@
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   overflow: hidden;
+  margin: 20px;
 }
 .ngSelectionCell {
   margin-top: 9px;

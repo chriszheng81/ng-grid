@@ -2,7 +2,7 @@
 * ng-grid JavaScript Library
 * Authors: https://github.com/angular-ui/ng-grid/blob/master/README.md 
 * License: MIT (http://www.opensource.org/licenses/mit-license.php)
-* Compiled At: 12/04/2013 16:19
+* Compiled At: 12/09/2013 18:16
 ***********************************************/
 (function(window, $) {
 'use strict';
@@ -1161,7 +1161,7 @@ var ngGrid = function ($scope, options, sortService, domUtilityService, $filter,
         footerTemplate: undefined,
         groups: [],
         groupsCollapsedByDefault: true,
-        headerRowHeight: 30,
+        headerRowHeight: 60,
         headerRowTemplate: undefined,
         jqueryUIDraggable: false,
         jqueryUITheme: false,
@@ -1178,7 +1178,7 @@ var ngGrid = function ($scope, options, sortService, domUtilityService, $filter,
         pinSelectionCheckbox: false,
         plugins: [],
         primaryKey: undefined,
-        rowHeight: 30,
+        rowHeight: 60,
         rowTemplate: undefined,
         selectedItems: [],
         selectWithCheckboxOnly: false,
@@ -1268,7 +1268,7 @@ var ngGrid = function ($scope, options, sortService, domUtilityService, $filter,
                 return !e[NG_HIDDEN];
             }).length * self.config.rowHeight;
         } else {
-            calculatedHeight = self.filteredRows.length * self.config.rowHeight;
+            calculatedHeight = self.filteredRows.length * (self.config.rowHeight + 1);
         }
         return calculatedHeight;
     };
@@ -2533,7 +2533,8 @@ var ngStyleProvider = function($scope, grid) {
         return { "height": col.headerRowHeight + "px" };
     };
     $scope.rowStyle = function (row) {
-        var ret = { "top": row.offsetTop + "px", "height": $scope.rowHeight + "px" };
+
+        var ret = { "top": row.offsetTop + row.rowIndex + "px" };
         if (row.isAggRow) {
             ret.left = row.offsetLeft;
         }
@@ -2546,7 +2547,7 @@ var ngStyleProvider = function($scope, grid) {
         return { "height": grid.config.headerRowHeight + "px" };
     };
     $scope.topPanelStyle = function() {
-        return { "width": grid.rootDim.outerWidth + "px", "height": $scope.topPanelHeight() + "px" };
+        return { "width": grid.rootDim.outerWidth  + "px", "height": $scope.topPanelHeight() + "px" };
     };
     $scope.headerStyle = function() {
         return { "width": grid.rootDim.outerWidth + "px", "height": grid.config.headerRowHeight + "px" };
@@ -2555,7 +2556,7 @@ var ngStyleProvider = function($scope, grid) {
         return { "width": grid.rootDim.outerWidth + "px", "height": "32px" };
     };
     $scope.viewportStyle = function() {
-        return { "width": grid.rootDim.outerWidth + "px", "height": $scope.viewportDimHeight() + "px" };
+        return { "width": grid.rootDim.outerWidth + 2 + "px", "height": $scope.viewportDimHeight() + "px" };
     };
     $scope.footerStyle = function() {
         return { "width": grid.rootDim.outerWidth + "px", "height": $scope.footerRowHeight + "px" };

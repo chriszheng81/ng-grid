@@ -2,12 +2,12 @@
 @rowColorOdd: @rowOddColor;
 
 .ngRow {
+  color: @fontColor;
   position: absolute;
-  border-bottom: 1px solid @borderColor;
 }
 
 .ngRow.odd {
-  background-color: @rowColorOdd; //rgb(253, 253, 253);
+  background-color: @rowColorOdd;
 }
 
 .ngRow.even {
@@ -15,5 +15,6 @@
 }
 
 .ngRow.selected {
-  background-color: @grayBlue; //rgb(201, 221, 225);
+  background-color: @rowSelectedColor;
+  color: @rowSelectedFontColor;
 }

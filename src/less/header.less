@@ -2,8 +2,11 @@
     position: relative;
     overflow: hidden;
     font-weight: bold;
-    background-color: inherit;
+    background-color: @headerBgColor;
     height: 40px;
+    color: @headerColor;
+    background: -webkit-gradient(linear,left top,left bottom,from(@headerBgFromColor),to(@headerBgToColor));
+    border: 1px solid @borderColor;
 }
 
 .ngHeaderCell {
@@ -17,6 +20,11 @@
     z-index: 1;
 }
 
+.ngHeaderText {
+    margin: 5px;
+    font-size: 13px;
+}
+
 .ngHeaderSortColumn {
     position:absolute;
     overflow: hidden;
@@ -26,7 +34,6 @@
     position: relative;
     z-index: 1;
     background-color: @darkGray; // #EAEAEA
-    border-bottom: 1px solid @borderColor; // #D4D4D4
 }
 
 .ngSortButtonDown {
