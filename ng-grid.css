@@ -43,7 +43,6 @@
   overflow: hidden;
   font-weight: bold;
   background-color: #ffffff;
-  height: 40px;
   color: #5c646b;
   background: -webkit-gradient(linear, left top, left bottom, from(#fcfefe), to(#f2f9fb));
   border: 1px solid #d5d6d8;
@@ -58,8 +57,9 @@
   z-index: 1;
 }
 .ngHeaderText {
-  margin: 5px;
-  font-size: 13px;
+  padding: 5px;
+  font-size: 12px;
+  font-family: Arial;
 }
 .ngHeaderSortColumn {
   position: absolute;
@@ -342,6 +342,9 @@
   background-color: #35a1cf;
   color: #ffffff;
 }
+.ngRow:hover {
+  background-color: #d8eff9;
+}
 .ngCell {
   overflow: hidden;
   position: absolute;
@@ -355,6 +358,7 @@
   z-index: 1;
 }
 .ngCellText {
+  padding: 5px;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -363,7 +367,6 @@
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   overflow: hidden;
-  margin: 20px;
 }
 .ngSelectionCell {
   margin-top: 9px;

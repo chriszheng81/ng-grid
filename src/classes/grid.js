@@ -92,7 +92,7 @@ var ngGrid = function ($scope, options, sortService, domUtilityService, $filter,
         groupsCollapsedByDefault: true,
         
         //The height of the header row in pixels.
-        headerRowHeight: 60,
+        headerRowHeight: 40,
 
         //Define a header row template for further customization. See github wiki for more details.
         headerRowTemplate: undefined,

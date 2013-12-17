@@ -2,7 +2,7 @@
 * ng-grid JavaScript Library
 * Authors: https://github.com/angular-ui/ng-grid/blob/master/README.md 
 * License: MIT (http://www.opensource.org/licenses/mit-license.php)
-* Compiled At: 12/09/2013 18:16
+* Compiled At: 12/16/2013 18:12
 ***********************************************/
 (function(window, $) {
 'use strict';
@@ -1161,7 +1161,7 @@ var ngGrid = function ($scope, options, sortService, domUtilityService, $filter,
         footerTemplate: undefined,
         groups: [],
         groupsCollapsedByDefault: true,
-        headerRowHeight: 60,
+        headerRowHeight: 40,
         headerRowTemplate: undefined,
         jqueryUIDraggable: false,
         jqueryUITheme: false,

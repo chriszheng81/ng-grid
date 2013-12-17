@@ -2,7 +2,7 @@
 * ng-grid JavaScript Library
 * Authors: https://github.com/angular-ui/ng-grid/blob/master/README.md 
 * License: MIT (http://www.opensource.org/licenses/mit-license.php)
-* Compiled At: 12/09/2013 18:16
+* Compiled At: 12/16/2013 18:12
 ***********************************************/
 (function(window, $) {
 'use strict';
@@ -1303,7 +1303,7 @@ var ngGrid = function ($scope, options, sortService, domUtilityService, $filter,
         groupsCollapsedByDefault: true,
         
         //The height of the header row in pixels.
-        headerRowHeight: 60,
+        headerRowHeight: 40,
 
         //Define a header row template for further customization. See github wiki for more details.
         headerRowTemplate: undefined,
