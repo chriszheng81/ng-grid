@@ -86,7 +86,6 @@
         'src/filters/*.js',
         'src/services/*.js',
         'src/classes/*.js',
-
         'src/directives/*.js',
         'src/i18n/*.js',
         '<%= ngtemplates.ngGrid.dest %>'

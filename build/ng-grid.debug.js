@@ -2,7 +2,7 @@
 * ng-grid JavaScript Library
 * Authors: https://github.com/angular-ui/ng-grid/blob/master/README.md 
 * License: MIT (http://www.opensource.org/licenses/mit-license.php)
-* Compiled At: 12/16/2013 18:12
+* Compiled At: 12/19/2013 12:08
 ***********************************************/
 (function(window, $) {
 'use strict';
@@ -1291,7 +1291,7 @@ var ngGrid = function ($scope, options, sortService, domUtilityService, $filter,
         },
 
         //Defining the height of the footer in pixels.
-        footerRowHeight: 55,
+        footerRowHeight: 27,
         
         // the template for the column menu and filter, including the button.
         footerTemplate: undefined,
@@ -1334,9 +1334,9 @@ var ngGrid = function ($scope, options, sortService, domUtilityService, $filter,
         // pagingOptions -
         pagingOptions: {
             // pageSizes: list of available page sizes.
-            pageSizes: [250, 500, 1000], 
+            pageSizes: [5, 10, 25, 50, 100], 
             //pageSize: currently selected page size. 
-            pageSize: 250,
+            pageSize: 25,
             //currentPage: the uhm... current page.
             currentPage: 1
         },
@@ -2862,8 +2862,10 @@ var ngStyleProvider = function($scope, grid) {
     $scope.groupPanelStyle = function () {
         return { "width": grid.rootDim.outerWidth + "px", "height": "32px" };
     };
+
+    // height is adjusted by ngGridFlexibleHeightPlugin
     $scope.viewportStyle = function() {
-        return { "width": grid.rootDim.outerWidth + 2 + "px", "height": $scope.viewportDimHeight() + "px" };
+        return { "width": grid.rootDim.outerWidth + 2 + "px" };
     };
     $scope.footerStyle = function() {
         return { "width": grid.rootDim.outerWidth + "px", "height": $scope.footerRowHeight + "px" };
@@ -3401,7 +3403,10 @@ window.ngGrid.i18n['en'] = {
     ngMenuText: 'Choose Columns:',
     ngShowingItemsLabel: 'Showing Items:',
     ngTotalItemsLabel: 'Total Items:',
+    ngTotalCountLabel: 'Total Count:',
     ngSelectedItemsLabel: 'Selected Items:',
+    ngOfLabel: 'of',
+    ngPageLabel: 'page',
     ngPageSizeLabel: 'Page Size:',
     ngPagerFirstTitle: 'First Page',
     ngPagerNextTitle: 'Next Page',
@@ -3534,28 +3539,21 @@ angular.module("ngGrid").run(["$templateCache", function($templateCache) {
 
   $templateCache.put("footerTemplate.html",
     "<div ng-show=\"showFooter\" class=\"ngFooterPanel\" ng-class=\"{'ui-widget-content': jqueryUITheme, 'ui-corner-bottom': jqueryUITheme}\" ng-style=\"footerStyle()\">\n" +
-    "    <div class=\"ngTotalSelectContainer\" >\n" +
-    "        <div class=\"ngFooterTotalItems\" ng-class=\"{'ngNoMultiSelect': !multiSelect}\" >\n" +
-    "            <span class=\"ngLabel\">{{i18n.ngTotalItemsLabel}} {{maxRows()}}</span><span ng-show=\"filterText.length > 0\" class=\"ngLabel\">({{i18n.ngShowingItemsLabel}} {{totalFilteredItemsLength()}})</span>\n" +
-    "        </div>\n" +
-    "        <div class=\"ngFooterSelectedItems\" ng-show=\"multiSelect\">\n" +
-    "            <span class=\"ngLabel\">{{i18n.ngSelectedItemsLabel}} {{selectedItems.length}}</span>\n" +
-    "        </div>\n" +
+    "    <div class=\"ngPageSize\" >\n" +
+    "        <select ng-model=\"pagingOptions.pageSize\" >\n" +
+    "            <option ng-repeat=\"size in pagingOptions.pageSizes\">{{size}}</option>\n" +
+    "        </select>\n" +
     "    </div>\n" +
-    "    <div class=\"ngPagerContainer\" style=\"float: right; margin-top: 10px;\" ng-show=\"enablePaging\" ng-class=\"{'ngNoMultiSelect': !multiSelect}\">\n" +
-    "        <div style=\"float:left; margin-right: 10px;\" class=\"ngRowCountPicker\">\n" +
-    "            <span style=\"float: left; margin-top: 3px;\" class=\"ngLabel\">{{i18n.ngPageSizeLabel}}</span>\n" +
-    "            <select style=\"float: left;height: 27px; width: 100px\" ng-model=\"pagingOptions.pageSize\" >\n" +
-    "                <option ng-repeat=\"size in pagingOptions.pageSizes\">{{size}}</option>\n" +
-    "            </select>\n" +
-    "        </div>\n" +
-    "        <div style=\"float:left; margin-right: 10px; line-height:25px;\" class=\"ngPagerControl\" style=\"float: left; min-width: 135px;\">\n" +
-    "            <button type=\"button\" class=\"ngPagerButton\" ng-click=\"pageToFirst()\" ng-disabled=\"cantPageBackward()\" title=\"{{i18n.ngPagerFirstTitle}}\"><div class=\"ngPagerFirstTriangle\"><div class=\"ngPagerFirstBar\"></div></div></button>\n" +
-    "            <button type=\"button\" class=\"ngPagerButton\" ng-click=\"pageBackward()\" ng-disabled=\"cantPageBackward()\" title=\"{{i18n.ngPagerPrevTitle}}\"><div class=\"ngPagerFirstTriangle ngPagerPrevTriangle\"></div></button>\n" +
-    "            <input class=\"ngPagerCurrent\" min=\"1\" max=\"{{currentMaxPages}}\" type=\"number\" style=\"width:50px; height: 24px; margin-top: 1px; padding: 0 4px;\" ng-model=\"pagingOptions.currentPage\"/>\n" +
-    "            <button type=\"button\" class=\"ngPagerButton\" ng-click=\"pageForward()\" ng-disabled=\"cantPageForward()\" title=\"{{i18n.ngPagerNextTitle}}\"><div class=\"ngPagerLastTriangle ngPagerNextTriangle\"></div></button>\n" +
-    "            <button type=\"button\" class=\"ngPagerButton\" ng-click=\"pageToLast()\" ng-disabled=\"cantPageToLast()\" title=\"{{i18n.ngPagerLastTitle}}\"><div class=\"ngPagerLastTriangle\"><div class=\"ngPagerLastBar\"></div></div></button>\n" +
-    "        </div>\n" +
+    "    <div class=\"ngTotalCount\" >\n" +
+    "        <span class=\"ngLabel\">{{i18n.ngTotalCountLabel}} {{maxRows()}}</span>\n" +
+    "    </div>\n" +
+    "    <div class=\"ngPagerContainer\" ng-show=\"enablePaging\" ng-class=\"{'ngNoMultiSelect': !multiSelect}\">\n" +
+    "        <a class=\"ngPrevPage\" ng-click=\"pageBackward()\" ng-disabled=\"cantPageBackward()\" title=\"{{i18n.ngPagerPrevTitle}}\"></a>\n" +
+    "        <span class=\"ngLabel\">{{i18n.ngPageLabel}}</span>\n" +
+    "        <input class=\"ngPagerCurrent\" ng-model=\"pagingOptions.currentPage\"/>\n" +
+    "        <span class=\"ngLabel\">{{i18n.ngOfLabel}}</span>\n" +
+    "        <span class=\"ngLabel\">{{maxPages()}}</span>\n" +
+    "        <a class=\"ngNextPage\" ng-click=\"pageForward()\" ng-disabled=\"cantPageForward()\" title=\"{{i18n.ngPagerNextTitle}}\"></a>\n" +
     "    </div>\n" +
     "</div>\n"
   );
@@ -3580,7 +3578,7 @@ angular.module("ngGrid").run(["$templateCache", function($templateCache) {
     "    </div>\n" +
     "    <div ng-grid-menu></div>\n" +
     "</div>\n" +
-    "<div class=\"ngViewport\" unselectable=\"on\" ng-viewport ng-class=\"{'ui-widget-content': jqueryUITheme}\" ng-style=\"viewportStyle()\">\n" +
+    "<div class=\"ngViewport\" unselectable=\"on\" ng-viewport ng-class=\"{'ui-widget-content': jqueryUITheme, loading : loadingData}\" ng-style=\"viewportStyle()\">\n" +
     "    <div class=\"ngCanvas\" ng-style=\"canvasStyle()\">\n" +
     "        <div ng-style=\"rowStyle(row)\" ng-repeat=\"row in renderedRows\" ng-click=\"row.toggleSelected($event)\" ng-class=\"row.alternatingRowClass()\" ng-row></div>\n" +
     "    </div>\n" +

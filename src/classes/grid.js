@@ -80,7 +80,7 @@ var ngGrid = function ($scope, options, sortService, domUtilityService, $filter,
         },
 
         //Defining the height of the footer in pixels.
-        footerRowHeight: 55,
+        footerRowHeight: 27,
         
         // the template for the column menu and filter, including the button.
         footerTemplate: undefined,
@@ -123,9 +123,9 @@ var ngGrid = function ($scope, options, sortService, domUtilityService, $filter,
         // pagingOptions -
         pagingOptions: {
             // pageSizes: list of available page sizes.
-            pageSizes: [250, 500, 1000], 
+            pageSizes: [5, 10, 25, 50, 100], 
             //pageSize: currently selected page size. 
-            pageSize: 250,
+            pageSize: 25,
             //currentPage: the uhm... current page.
             currentPage: 1
         },

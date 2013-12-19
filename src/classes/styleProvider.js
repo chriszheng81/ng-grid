@@ -26,8 +26,10 @@
     $scope.groupPanelStyle = function () {
         return { "width": grid.rootDim.outerWidth + "px", "height": "32px" };
     };
+
+    // height is adjusted by ngGridFlexibleHeightPlugin
     $scope.viewportStyle = function() {
-        return { "width": grid.rootDim.outerWidth + 2 + "px", "height": $scope.viewportDimHeight() + "px" };
+        return { "width": grid.rootDim.outerWidth + 2 + "px" };
     };
     $scope.footerStyle = function() {
         return { "width": grid.rootDim.outerWidth + "px", "height": $scope.footerRowHeight + "px" };

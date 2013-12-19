@@ -1,7 +1,7 @@
 .ngGrid {
   background-color: #fdfdfd;
   font-family: Arial;
-  font-size: 13px;
+  font-size: 12px;
 }
 .ngGrid input[type="checkbox"] {
   margin: 0;
@@ -40,7 +40,6 @@
 }
 .ngHeaderContainer {
   position: relative;
-  overflow: hidden;
   font-weight: bold;
   background-color: #ffffff;
   color: #5c646b;
@@ -344,6 +343,7 @@
 }
 .ngRow:hover {
   background-color: #d8eff9;
+  color: #5c646b;
 }
 .ngCell {
   overflow: hidden;
@@ -389,27 +389,59 @@
   margin-left: 6px;
 }
 .ngFooterPanel {
-  background-color: #eaeaea;
-  padding: 0;
-  border-top: 1px solid #d5d6d8;
+  padding: 5px 0;
   position: relative;
 }
-.nglabel {
+.ngFooterPanel .ngPageSize {
+  float: left;
+}
+.ngFooterPanel .ngPageSize select {
+  margin: 0;
+  width: 67px;
+  height: 27px;
+  font-size: 12px;
+  background-color: #f8f9f9;
+}
+.ngFooterPanel .ngTotalCount {
+  float: left;
+  margin-left: 10px;
+  line-height: 27px;
+  font-size: 13px;
+}
+.ngFooterPanel .ngPagerContainer {
+  float: right;
+  line-height: 27px;
+}
+.ngFooterPanel .ngPagerContainer .ngPrevPage {
+  width: 8px;
+  height: 8px;
+  margin-right: 5px;
+  display: inline-block;
+}
+.ngFooterPanel .ngPagerContainer .ngPrevPage[disabled=disabled] {
+  cursor: default;
+}
+.ngFooterPanel .ngPagerContainer .ngNextPage {
+  width: 8px;
+  height: 8px;
+  margin-left: 5px;
+  display: inline-block;
+}
+.ngFooterPanel .ngPagerContainer .ngNextPage[disabled=disabled] {
+  cursor: default;
+}
+.ngFooterPanel .ngPagerContainer .ngPagerCurrent {
+  width: 35px;
+  height: 16px;
+  margin: 0 5px;
+  font-size: 12px;
+  vertical-align: middle;
+}
+.ngFooterPanel .nglabel {
   display: block;
   float: left;
   font-weight: bold;
   padding-right: 5px;
-}
-.ngTotalSelectContainer {
-  float: left;
-  margin: 5px;
-  margin-top: 7px;
-}
-.ngFooterSelectedItems {
-  padding: 2px;
-}
-.ngFooterTotalItems.ngnoMultiSelect {
-  padding: 0 !important;
 }
 .ngPagerFirstBar {
   width: 10px;
