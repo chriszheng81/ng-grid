@@ -505,11 +505,14 @@ var ngGrid = function ($scope, options, sortService, domUtilityService, $filter,
             self.config.maintainColumnRatios = self.config.maintainColumnRatios !== false; 
             // get the remaining width
             var remainingWidth = self.rootDim.outerWidth - totalWidth;
-            // are we overflowing vertically?
-            if (self.maxCanvasHt > $scope.viewportDimHeight()) {
-                //compensate for scrollbar
-                remainingWidth -= domUtilityService.ScrollW;
-            }
+
+            // with flex height plugin, don't need to change width to compensate for scrollbar 
+
+            // // are we overflowing vertically?
+            // if (self.maxCanvasHt > $scope.viewportDimHeight()) {
+            //     //compensate for scrollbar
+            //     remainingWidth -= domUtilityService.ScrollW;
+            // }
             // calculate the weight of each asterisk rounded down
             var asteriskVal = Math.floor(remainingWidth / asteriskNum);
 

@@ -17,9 +17,16 @@
 .ngRow.selected {
   background-color: @rowSelectedColor;
   color: @rowSelectedFontColor;
+  a {
+  	color: @rowSelectedFontColor;
+  }
+  &:hover {
+    background-color: @rowSelectedColor;
+    color: @rowSelectedFontColor;
+  }
 }
 
 .ngRow:hover {
-  background-color: #d8eff9;
+  background-color: @rowHoveredColor;
   color: @fontColor;
 }

@@ -341,6 +341,13 @@
   background-color: #35a1cf;
   color: #ffffff;
 }
+.ngRow.selected a {
+  color: #ffffff;
+}
+.ngRow.selected:hover {
+  background-color: #35a1cf;
+  color: #ffffff;
+}
 .ngRow:hover {
   background-color: #d8eff9;
   color: #5c646b;
