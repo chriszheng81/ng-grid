@@ -3242,9 +3242,7 @@ angular.module("ngGrid").run(["$templateCache", function($templateCache) {
 
   $templateCache.put("headerCellTemplate.html",
     "<div class=\"ngHeaderSortColumn {{col.headerClass}}\" ng-style=\"{'cursor': col.cursor}\" ng-class=\"{ 'ngSorted': !noSortVisible }\">\n" +
-    "    <div ng-click=\"col.sort($event)\" ng-class=\"'colt' + col.index\" class=\"ngHeaderText\">{{col.displayName}}</div>\n" +
-    "    <div class=\"ngSortButtonDown\" ng-show=\"col.showSortButtonDown()\"></div>\n" +
-    "    <div class=\"ngSortButtonUp\" ng-show=\"col.showSortButtonUp()\"></div>\n" +
+    "    <div ng-click=\"col.sort($event)\" ng-class=\"'colt' + col.index\" class=\"ngHeaderText\"><span>{{col.displayName}}</span><span class=\"ngSortButtonDown\" ng-show=\"col.showSortButtonDown()\"></span><span class=\"ngSortButtonUp\" ng-show=\"col.showSortButtonUp()\"></span></div>\n" +
     "    <div class=\"ngSortPriority\">{{col.sortPriority}}</div>\n" +
     "    <div ng-class=\"{ ngPinnedIcon: col.pinned, ngUnPinnedIcon: !col.pinned }\" ng-click=\"togglePin(col)\" ng-show=\"col.pinnable\"></div>\n" +
     "</div>\n" +
