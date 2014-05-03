@@ -34,8 +34,4 @@
     $scope.footerStyle = function() {
         return { "width": grid.rootDim.outerWidth + "px", "height": $scope.footerRowHeight + "px" };
     };
-    $scope.sortingArrowStyle = function(col) {
-        var width = col.displayName.length * 8;
-        return { "left": width + "px"};
-    };
 };
