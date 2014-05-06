@@ -18,7 +18,7 @@
   user-select: none;
 }
 .ngViewport {
-  overflow: auto;
+  overflow: hidden;
   min-height: 20px;
 }
 .ngViewport:focus {
@@ -43,7 +43,9 @@
   font-weight: bold;
   background-color: #ffffff;
   color: #5c646b;
-  background: -webkit-gradient(linear, left top, left bottom, from(#fcfefe), to(#f2f9fb));
+  background: -webkit-linear-gradient(#fcfefe, #f2f9fb);
+  background: -moz-linear-gradient(#fcfefe, #f2f9fb);
+  background: -linear-gradient(#fcfefe, #f2f9fb);
   border: 1px solid #d5d6d8;
 }
 .ngHeaderCell {
@@ -70,9 +72,12 @@
   background-color: #eaeaea;
 }
 .ngSortButtonDown {
-    content:url(/img/ui/sort_arrow_asc.png);
-    padding-left:5px;
-    vertical-align: middle;
+  padding-left: 5px;
+  vertical-align: middle;
+}
+.ngSortButtonDown:after {
+  content: url(/img/ui/sort_arrow_asc.png);
+  vertical-align: middle;
 }
 .ngNoSort {
   cursor: default;
@@ -91,9 +96,12 @@
   cursor: pointer;
 }
 .ngSortButtonUp {
-    content:url(/img/ui/sort_arrow_desc.png);
-    padding-left:5px;
-    vertical-align: middle;
+  padding-left: 5px;
+  vertical-align: middle;
+}
+.ngSortButtonUp:after {
+  content: url(/img/ui/sort_arrow_desc.png);
+  vertical-align: middle;
 }
 .ngHeaderScroller {
   position: absolute;
