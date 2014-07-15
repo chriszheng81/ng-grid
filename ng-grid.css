@@ -43,9 +43,7 @@
   font-weight: bold;
   background-color: #ffffff;
   color: #5c646b;
-  background: -webkit-linear-gradient(#fcfefe, #f2f9fb);
-  background: -moz-linear-gradient(#fcfefe, #f2f9fb);
-  background: -linear-gradient(#fcfefe, #f2f9fb);
+  background: linear-gradient(#fcfefe, #f2f9fb);
   border: 1px solid #d5d6d8;
 }
 .ngHeaderCell {
