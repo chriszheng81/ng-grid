@@ -2,7 +2,7 @@
 * ng-grid JavaScript Library
 * Authors: https://github.com/angular-ui/ng-grid/blob/master/README.md 
 * License: MIT (http://www.opensource.org/licenses/mit-license.php)
-* Compiled At: 05/05/2014 17:06
+* Compiled At: 10/14/2014 15:42
 ***********************************************/
 (function(window, $) {
 'use strict';
@@ -2815,19 +2815,24 @@ var ngSelectionProvider = function (grid, $scope, $parse) {
     // @return - boolean indicating if all items are selected or not
     // @val - boolean indicating whether to select all/de-select all
     self.toggleSelectAll = function (checkAll, bypass, selectFiltered) {
-        var rows = selectFiltered ? grid.filteredRows : grid.rowCache;
+        var rows = selectFiltered ? grid.filteredRows : grid.rowCache, wasSelected, index;
         if (bypass || grid.config.beforeSelectionChange(rows, checkAll)) {
-            var selectedlength = self.selectedItems.length;
-            if (selectedlength > 0) {
+            if (!selectFiltered && self.selectedItems.length > 0) {
                 self.selectedItems.length = 0;
             }
             for (var i = 0; i < rows.length; i++) {
+                wasSelected = rows[i].selected;
                 rows[i].selected = checkAll;
                 if (rows[i].clone) {
                     rows[i].clone.selected = checkAll;
                 }
-                if (checkAll) {
+                if (!wasSelected && checkAll) {
                     self.selectedItems.push(rows[i].entity);
+                } else if (wasSelected && !checkAll) {
+                    index = self.selectedItems.indexOf(rows[i].entity);
+                    if (index > -1) {
+                        self.selectedItems.splice(index, 1);
+                    }
                 }
             }
             if (!bypass) {

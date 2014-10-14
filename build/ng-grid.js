@@ -2,7 +2,7 @@
 * ng-grid JavaScript Library
 * Authors: https://github.com/angular-ui/ng-grid/blob/master/README.md 
 * License: MIT (http://www.opensource.org/licenses/mit-license.php)
-* Compiled At: 07/14/2014 15:49
+* Compiled At: 10/14/2014 15:42
 ***********************************************/
 (function(window, $) {
 'use strict';

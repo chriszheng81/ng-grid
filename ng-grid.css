@@ -70,6 +70,7 @@
   background-color: #eaeaea;
 }
 .ngSortButtonDown {
+  display: inline;
   padding-left: 5px;
   vertical-align: middle;
 }
@@ -94,6 +95,7 @@
   cursor: pointer;
 }
 .ngSortButtonUp {
+  display: inline;
   padding-left: 5px;
   vertical-align: middle;
 }
@@ -122,6 +124,7 @@
   background-color: transparent;
 }
 .ngHeaderText {
+  display: inline;
   padding: 5px;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
